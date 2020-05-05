@@ -1,0 +1,47 @@
+ <div class="MenuBar">
+<%= render partial: "form-section" ,locals:{form_action: "/menu" ,form_value: "Menus",form_method: "GET" }%>
+<form method="get" action="/users/1" method="GET">
+    <button class="MenuBar-button" type="submit">My account </button>
+</form>
+<p class="User-credentials"> Hello! User </p>
+<form method="get" action="/cart_items" method="GET">
+    <button  class="MenuBar-button" type="submit">View Cart</button>
+</form>
+<%= render partial: "form-section" ,locals:{  form_action: "/order" , form_value: "My Orders",form_method: "GET" }%>
+
+<%= render partial: "form-section" ,locals:{  form_action: "/signout" ,form_value: "SignOut", form_method: "Delete" }%>
+</div>
+
+
+<div class="Menus">
+
+
+<hr class="Cafeteria-header-line">
+  <h1 class="MenuPageTitle">My Orders</h1>
+
+
+</div>
+
+<table class="OrderCart">
+
+	<thead>
+	<tr>
+		<th>S No.</th>
+		<th>Date</th>
+		<th>Order-Id</th>
+		<th>Amount</th>
+		<th>Status</th>
+	<th>Action</th>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>20-03-2001</td>
+		<td>1990</td>
+		<td>300</td>
+    <td>Not Delivered</td>
+		<td><%= link_to "Expand", "/cart_items" ,method: "get" %></td>
+	</tr>	</thead>
+	<tbody>
+
+	</tbody>
+</table>

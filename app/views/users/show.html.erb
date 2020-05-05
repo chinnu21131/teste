@@ -1,0 +1,59 @@
+ <div class="MenuBar">
+<%= render partial: "form-section" ,locals:{form_action: "/menu" ,form_value: "Menus",form_method: "GET" }%>
+<form method="get" action="/users/1" method="GET">
+    <button class="MenuBar-button" type="submit">My account </button>
+</form>
+<p class="User-credentials"> Hello! User </p>
+<form method="get" action="/cart_items" method="GET">
+    <button  class="MenuBar-button" type="submit">View Cart</button>
+</form>
+<%= render partial: "form-section" ,locals:{  form_action: "/order" , form_value: "My Orders",form_method: "GET" }%>
+
+<%= render partial: "form-section" ,locals:{  form_action: "/signout" ,form_value: "SignOut", form_method: "Delete" }%>
+</div>
+<div class="Menus">
+
+
+<hr class="Cafeteria-header-line">
+  <h1 class="MenuPageTitle">My account</h1>
+
+
+</div>
+<article class="Account">
+  <h1 class="Account-header">Hello User</h1>
+  <section>
+    <ul>
+      <li class="Details-item">
+        <label class="Details-label">Name :</label>
+        <input name="User_name" placeholder="Paritala Dinesh Kumar" disabled>
+      </li>
+      <li class="Details-item">
+        <label class="Details-label">Gender :</label>
+        <div class="Gender-options">
+          <input type="radio" id="male" name="gender" value="male">
+          <label for="male">Male</label><br>
+          <input type="radio" id="female" name="gender" value="female">
+          <label for="female">Female</label><br>
+          <input type="radio" id="other" name="gender" value="other">
+          <label for="other">Other</label>
+        </div>
+      </li>
+      <li class="Details-item">
+        <label class="Details-label">Date-of-Birth :</label>
+        <%= date_field_tag(nil,nil,class: 'date-of-birth'   ) %>
+      </li>
+      <li class="Details-item">
+        <label class="Details-label">Contact no :</label>
+        <input name="User_mobile" placeholder="your contact number">
+      </li>
+      <li class="Details-item">
+        <label class="Details-label">Mail ID :</label>
+        <input name="User_mail" placeholder="ex:abc123@gmail.com">
+      </li>
+      <li class="Details-item">
+        <label class="Details-label">Password :</label>
+        <input name="User_password" placeholder="Password!">
+      </li>
+    </ul>
+  </section>
+</article>

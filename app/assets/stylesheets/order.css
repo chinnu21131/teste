@@ -1,0 +1,59 @@
+.OrderCart {
+
+  padding:5px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.OrderCart th {
+  border:1px solid #C0C0C0;
+  padding:5px;
+  background: lightskyblue;
+  font-size: 20px;
+
+font-weight: bold;
+}
+.OrderCart td {
+  border:1px solid #C0C0C0;
+  padding:5px;
+}
+
+.OrderButton{
+  background-color: forestgreen;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 4px;
+}
+.OrderDetails{
+  display: flex;
+  margin: 50px ;
+  padding: 15px;
+  align-items: baseline;
+}
+.OrderType{
+font-size: 18px;
+display: flex;
+margin-right:50px ;
+color: black;
+}
+.OrderType-label{
+  font-weight: initial;
+
+font-size: 20px;
+}
+.OrderDetails-title{
+  font-weight: bold;
+  font-size: 18px;
+  padding: 5px;
+
+
+  color: darkblue;
+}
+.OrderBanner{
+  margin-top: 20px;
+  margin-left: 320px;
+  width: 800px;
+  height: 80px;
+}

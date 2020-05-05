@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cafeteria</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <div class="Cafeteria-header"  >
+      <img class="Cafeteria-logo" src="logo.png">
+        <h1 class="Cafeteria-title ">Welcome to EAT'UP Cafeteria</h1>
+      <hr class="Cafeteria-header-line">
+  </div>
+    <% if flash[:error] %>
+      <p class="Flash-error"> <%= flash[:error]%></p>
+    <% end %>
+  <div class="Cafeteria" >
+
+      <%= yield %>
+  </div>
+
+
+  </body>
+</html>

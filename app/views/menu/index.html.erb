@@ -1,0 +1,38 @@
+<article class="MenuPage">
+  <div class="MenuBar">
+<%= render partial: "form-section" ,locals:{form_action: "/menu" ,form_value: "Menus",form_method: "GET" }%>
+<form method="get" action="/users/1" method="GET">
+    <button class="MenuBar-button" type="submit">My account </button>
+</form>
+<p class="User-credentials"> Hello! User </p>
+<form method="get" action="/cart_items" method="GET">
+    <button  class="MenuBar-button" type="submit">View Cart</button>
+</form>
+<%= render partial: "form-section" ,locals:{  form_action: "/order" , form_value: "My Orders",form_method: "GET" }%>
+
+<%= render partial: "form-section" ,locals:{  form_action: "/signout" ,form_value: "SignOut", form_method: "Delete" }%>
+</div>
+
+<div class="Menus">
+  <hr class="Cafeteria-header-line">
+  <h1 class="MenuPageTitle">MENUS</h1>
+</div>
+<div class="MenuContent">
+  <div >
+    <img class="MenuContent-image" src="food.jpg">
+  </div>
+  <div>
+    <% Menu.menu.each do |menu| %>
+    <div class="Menu">
+      <%= render partial: "menu-section" ,locals:{section_title: menu[0].menu_name , menu_items: MenuItem.menu_items(menu[0].id) }%>
+      <% if menu[1] %>
+       <%= render partial: "menu-section" ,locals:{  section_title: menu[1].menu_name , menu_items: MenuItem.menu_items(menu[1].id) }%>
+      <%end %>
+    </div>
+    <% end %>
+    <form method="get" action="/cart_items" method="GET">
+      <button class="CartButton button1"type="submit">Go to Cart</button>
+    </form>
+  </div>
+</div>
+</article>

@@ -1,0 +1,36 @@
+<section class="MenuSection">
+  <h1 class="MenuSection-title"> <%= section_title %> </h1>
+    <ul class="MenuItem">
+      <% menu_items.each do |menu_item| %>
+        <li class="MenuItem-list">
+           <label class="MenuItem-container">
+             <%= menu_item.menu_item %>
+              <p class="MenuItem-price"> Rs. <%=menu_item.price %></p>
+
+             <%  if CartItem.exists? menu_item_id: menu_item.id  and  CartItem.find(CartItem.cart_id(menu_item.id)).item_quantity!=0  %>
+<%k=CartItem.quantity(menu_item.id)%>
+              <%=form_with(url: "/cart_items/#{CartItem.cart_id(menu_item.id)}", method: "put")do%>
+
+               <input type="submit" class="CounterButton"  value="-" >
+              <% end %>
+              <input class="MenuItem-quantity" type="integer" value="<%= k %>"max=10 name="quantity" disabled >
+
+              <%=form_with(url: "/cart_items/#{CartItem.cart_id(menu_item.id)}", method: "put")do%>
+                 <input type="hidden" name="state" value= "true"/>
+                  <input type="submit" class="CounterButton" value="+" >
+              <% end %>
+             <% else%>
+             <form  action= "/cart_items" method="POST">
+              <input type="hidden" name="menu_item_id" value= <%= menu_item.id %> />
+              <input type="hidden" name="menu_item" value= "<%= menu_item.menu_item %>" />
+              <input type="hidden" name="price" value= <%= menu_item.price %> />
+              <input class="AddButton" type="submit" value="Add" >
+              </form>
+             <% end %>
+          </label>
+
+      </li>
+
+   <% end %>
+          </ul>
+  </section>

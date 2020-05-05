@@ -1,0 +1,38 @@
+
+.Dash-button{
+
+  background-color:transparent;
+  border: none;
+  color: #ffffff;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+	font-size: 16px;
+  text-align: center;
+  width: 250px;
+}
+.Dash{
+
+  background-color: brown ;
+  height: 500px;
+  width: 250px;
+}
+.Dash-button:hover{
+    background-color: darkred;
+}
+.AdminControl{
+  margin: 0 auto;
+}
+.Admin-title{
+  line-height: 2;
+  font-size: 30px;
+  background-color:darkred;
+  padding-left: 705px;
+  padding-right: 705px;
+  color:white;
+}
+
+.AdminControl-section{
+  margin-bottom: 20px;
+}

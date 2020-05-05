@@ -1,0 +1,40 @@
+body{
+  background-color: aliceblue;
+
+}
+.Cafeteria-authenticate{
+  font-size: 20px;
+  color: currentColor;
+  margin-top: 10px;
+  margin-left: 20px;
+  color: slateblue;
+}
+.Cafeteria{
+  width: max-content;
+  margin: auto;
+
+}
+.Cafeteria-logo{
+  width: 100px;
+
+  margin-left: 300px;
+
+}
+.Cafeteria-title{
+  font-size: 45px;
+
+  margin-top: 30px;
+
+  margin-left: 20px;
+}
+.Cafeteria-header-line{
+  color: aliceblue;
+  margin: auto;
+}
+.Cafeteria-header{
+  display: flex;
+  background-color: antiquewhite;
+  color:brown;
+}
+.Cafeteria-footer{
+  }

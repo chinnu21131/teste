@@ -1,0 +1,201 @@
+<div class="Admin">
+  <h1 class="Admin-title">ADMIN</h1>
+</div>
+<div class="NewMenu">
+  <div class="Dash" >
+    <form method="get" action="/users/1" method="GET">
+      <button class="Dash-button" type="submit">DASHBOARD </button>
+    </form>
+    <form method="get" action="/menu/new" method="GET">
+      <button class="Dash-button" type="submit">Manage Menus </button>
+    </form>
+    <form method="get" action="/users/1" method="GET">
+      <button class="Dash-button" type="submit">Manage Users </button>
+    </form>
+    <form method="get" action="/users/1" method="GET">
+      <button class="Dash-button" type="submit">Manage Orders</button>
+    </form>
+    <form method="get" action="/users/1" method="GET">
+      <button class="Dash-button" type="submit">My account </button>
+    </form>
+  </div>
+  <article class="AdminControl">
+
+    <section class="AdminControl-section">
+      <h2 class="MenuSection-title">Add Menu:</h2>
+      <%= form_with(url: "/menu", method: "post") do%>
+        <div>
+          <label>Menu Name:</label>
+          <input type="text", name="menu_name", placeholder="New menu name" >
+        </div>
+        <input type="submit", value="Add">
+      <% end %>
+    </section>
+
+    <section class="AdminControl-section">
+      <h2 class="MenuSection-title">New Menu-Item:</h2>
+      <%= form_with(url: "/menu_items", method: "post") do%>
+        Select Menu Type :
+        <select name="menu_id">
+          <% Menu.all.each do |menu| %>
+            <option value="<%= menu.id %>"><%= menu.menu_name %></option>
+          <% end %>
+        </select>
+
+        <div>
+          Item name:
+          <input type="text", name="menu_item", placeholder="New item name" >
+        </div>
+        <div>
+          Item price: $
+          <input type="integer", name="price" , placeholder=" price" >
+        </div>
+        <input type="submit", value="Add" >
+      <% end %>
+    </section>
+
+    <section class="AdminControl-section">
+      <h2 class="MenuSection-title">Edit Menu:</h2>
+      <div>
+        <%= form_with(url: "/menu/new", method: "get") do%>
+          <label>Menu Name:</label>
+          <select name="menu_edit_id" >
+            <option value="0">--select menu--</option>
+            <% Menu.all.each do |menu| %>
+              <option type="button" Onclick="this.form.submit()" value="<%= menu.id %>"><%= menu.menu_name %></option>
+            <% end %>
+          </select>
+        <% end %>
+        <% if Menu.edit %>
+          <%= form_with(url: "/menu/#{Menu.edit}", method: "patch") do%>
+            <input type="text" name="new_menu_name" value="<%= Menu.find(Menu.edit).menu_name %>">
+            <input type="button", value="Update", Onclick="this.form.submit()" >
+          <% end %>
+        <% else %>
+          <% if @id %>
+            selected menu:
+            <input type="text" value=<%= Menu.find(@id).menu_name%> disabled />
+          <% end %>
+          <%= form_with(url: "/menu/#{@id}", method: "patch") do %>
+            <input type="hidden" name="edit" value="<%= @id %>" />
+            <input type="button", value="Edit", Onclick="this.form.submit()" >
+          <% end %>
+        <% end %>
+      </div>
+    </section>
+
+    <section class="AdminControl-section">
+      <h2 class="MenuSection-title">Edit Menu-Item:</h2>
+      <div>
+        <%= form_with(url: "/menu/new", method: "get") do%>
+          <label>Menu Name:</label>
+          <select name="menu_edit_id" >
+            <option value="0">--select menu--</option>
+            <% Menu.all.each do |menu| %>
+              <option type="button" Onclick="this.form.submit()" value="<%= menu.id %>"><%= menu.menu_name %></option>
+            <% end %>
+          </select>
+          <% if @id %>
+            selected menu:
+            <input type="text" value=<%= Menu.find(@id).menu_name%> disabled />
+          <% end %>
+        <% end %>
+      </div>
+      <div>
+        <%= form_with(url: "/menu/new", method: "get") do%>
+          <label>Menu-Item Name:</label>
+          <select name="menuitem_edit_id">
+            <option value="0">--select menu-item--</option>
+            <% MenuItem.all.where(menu_id: @id).each do |menuitem| %>
+              <option type="button" Onclick="this.form.submit()" value="<%= menuitem.id %>"><%= menuitem.menu_item %></option>
+            <% end %>
+          </select>
+        <% end %>
+        <% if MenuItem.edit %>
+          <% @k = MenuItem.find(MenuItem.edit) %>
+          <%= form_with(url: "/menu_items/#{MenuItem.edit}", method: "patch") do%>
+            <input type="text" name="new_menuitem_name" value="<%= @k.menu_item %>">
+            <input type="text" name="new_menuitem_price" value="<%= @k.price %>">
+            <select name="new_menuitem_menu_id" >
+              <option value="<%= @k.menu_id %>"><%= Menu.find_by(id: @k.menu_id).menu_name %></option>
+              <% Menu.all.each do |menu| %>
+                <option value="<%= menu.id %>"><%= menu.menu_name %></option>
+              <% end %>
+            </select>
+            <input type="button", value="Update", Onclick="this.form.submit()" >
+          <% end %>
+        <% else %>
+          <% if @m_id %>
+            selected menu-item:
+            <input type="text" value=<%= MenuItem.find(@m_id).menu_item %> disabled />
+          <% end %>
+          <%= form_with(url: "/menu_items/#{@m_id}", method: "patch") do %>
+            <input type="hidden" name="edit" value="<%= @m_id %>" />
+            <input type="button", value="Edit", Onclick="this.form.submit()" >
+          <% end %>
+        <% end %>
+      </div>
+    </section>
+
+    <section class="AdminControl-section">
+      <h2 class="MenuSection-title">Delete Menu:</h2>
+        <div>
+          <%= form_with(url: "/menu/new", method: "get") do%>
+            Menu Name:
+            <select name="menu_edit_id" >
+              <option value="0">--select menu--</option>
+              <% Menu.all.each do |menu| %>
+                <option type="button" Onclick="this.form.submit()" value="<%= menu.id %>"><%= menu.menu_name %></option>
+              <% end %>
+            </select>
+          <% end %>
+          <% if @id %>
+            selected menu:
+            <input type="text" value=<%= Menu.find(@id).menu_name%> disabled />
+          <% end %>
+          <%= form_with(url: "/menu/#{@id}", method: "delete") do %>
+            <input type="hidden" name="delete" value="<%= @id %>" />
+            <input type="button", value="Delete", Onclick="this.form.submit()" >
+          <% end %>
+        </div>
+    </section>
+
+    <section class="AdminControl-section">
+      <h2 class="MenuSection-title">Delete Menu-Item:</h2>
+        <div>
+          <%= form_with(url: "/menu/new", method: "get") do%>
+            Menu Name:
+            <select name="menu_edit_id" >
+              <option value="0">--select menu--</option>
+                <% Menu.all.each do |menu| %>
+                  <option type="button" Onclick="this.form.submit()" value="<%= menu.id %>"><%= menu.menu_name %></option>
+                <% end %>
+            </select>
+            <% if @id %>
+              selected menu:
+              <input type="text" value=<%= Menu.find(@id).menu_name%> disabled />
+            <% end %>
+          <% end %>
+        </div>
+        <div>
+          <%= form_with(url: "/menu/new", method: "get") do%>
+            Menu-Item Name:
+            <select name="menuitem_edit_id">
+              <option value="0">--select menu-item--</option>
+              <% MenuItem.all.where(menu_id: @id).each do |menuitem| %>
+                <option type="button" Onclick="this.form.submit()" value="<%= menuitem.id %>"><%= menuitem.menu_item %></option>
+              <% end %>
+            </select>
+          <% end %>
+          <% if @m_id %>
+            selected menu-item:
+            <input type="text" value=<%= MenuItem.find(@m_id).menu_item %> disabled />
+          <% end %>
+          <%= form_with(url: "/menu_items/#{@m_id}", method: "delete") do %>
+            <input type="hidden" name="delete" value="<%= @m_id %>" />
+            <input type="button", value="Delete", Onclick="this.form.submit()" >
+          <% end %>
+        </div>
+    </section>
+  </article>
+</div>
