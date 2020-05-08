@@ -38,3 +38,14 @@ body{
 }
 .Cafeteria-footer{
   }
+
+footer {
+  width: 100%;
+  padding: 50px;
+  background: radial-gradient(white 0%,blue 300%);
+  text-align: center;
+}
+sup {
+  vertical-align: super;
+  font-size: smaller;
+}

@@ -19,6 +19,7 @@
 .MenuSection-title{
   font-size: 35px;
   color: chocolate;
+  margin-right: 10px;
 }
 .MenuItem{
   list-style: decimal;
@@ -131,4 +132,25 @@ border-radius: 4px;
 }
 .NewMenu{
   display: flex;
+}
+.fa-edit {
+  margin-right: 10px;
+}
+
+.fa-trash {
+  color: red;
+}
+
+.EditMenuPage {
+  font-family: sans-serif;
+  margin-top: 35px;
+  padding: 20px;
+  background-color: antiquewhite;
+  border-radius: 10px;
+}
+
+.EditMenu-title {
+  font-size: 35px;
+  padding-bottom: 30px;
+  color: darkblue;
 }

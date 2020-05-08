@@ -1,0 +1,15 @@
+<p><%= @menu.id %></p>
+<div class="EditMenuPage">
+  <p class="EditMenu-title">Edit Menu</p>
+  <section class="EditMenu">
+    <%= form_with(url: "/menu/#{@menu.id}", method: "patch") do %>
+      <div class="Form-section">
+        <p class="Form-section-label">Menu</p>
+        <input type="text" name="new_menu_name" value="<%= @menu.menu_name %>">
+      </div>
+      <div class="Form-section">
+        <input type="button" Onclick="this.form.submit()" value="Update" >
+      </div>
+   <%end%>
+  </section>
+</div>

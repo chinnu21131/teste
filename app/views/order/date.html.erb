@@ -1,0 +1,7 @@
+<%= form_with(url: "/date_display", method: "get") do %>
+  Start date:
+  <%= date_field_tag('start_date',nil) %>
+  End date:
+  <%= date_field_tag('end_date',nil) %>
+    <input type="button", value="Get", Onclick="this.form.submit()" >
+<% end %>

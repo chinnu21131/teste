@@ -1,10 +1,15 @@
 class MenuController < ApplicationController
   def new
-    @id = params[:menu_edit_id]
+    @id = params[:menu_id]
     @m_id = params[:menuitem_edit_id]
   end
 
   def index
+  end
+
+  def show
+    edit_id = params[:id]
+    @menu = Menu.find(edit_id)
   end
 
   def create
@@ -13,24 +18,17 @@ class MenuController < ApplicationController
   end
 
   def update
-    if params[:edit]
-      edit_id = params[:edit]
-      Menu.edit = edit_id
-      redirect_to "/menu/new"
-    else
-      menu = Menu.find(params[:id])
-      menu.menu_name = params[:new_menu_name]
-      menu.save!
-      Menu.edit = nil
-      redirect_to "/menu"
-    end
+    menu = Menu.find(params[:id])
+    menu.menu_name = params[:new_menu_name]
+    menu.save!
+    redirect_to "/menu/new?menu_id=#{menu.id}"
   end
 
   def destroy
-    menuitems = MenuItem.all.where(menu_id: params[:delete])
-    menu = Menu.find(params[:delete])
+    menuitems = MenuItem.all.where(menu_id: params[:id])
+    menu = Menu.find(params[:id])
     menuitems.destroy_all
     menu.destroy
-    redirect_to "/menu"
+    redirect_to "/menu/new"
   end
 end

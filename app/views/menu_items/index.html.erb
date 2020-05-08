@@ -1,9 +1,25 @@
-<form>
-  Select your favorite fruit:
-  <select id="mySelect" name="menu_no" >
-<% MenuItem.menu_items(MenuItem.no).each do |menu| %>
-    <option type= "button" name="menu_no" onclick= "this.form.submit()" value= "<%= menu.id %>" > <%= menu.menu_item%> </option>
-
-    <% end%>
-  </select>
-</form>
+<p><%= @menu_item.id %></p>
+<div class="NewUsersPage">
+  <p class="NewUsers-title">Edit Menu-Item</p>
+  <section class="UsersNew">
+    <%= form_with(url: "/menu_items/#{@menu_item.id}", method: "patch") do %>
+      <div class="Form-section">
+        <p class="Form-section-label">Menu-Item</p>
+        <input type="text" name="new_menuitem_name" value="<%= @menu_item.menu_item %>">
+      </div>
+      <div class="Form-section">
+        <p class="Form-section-label">Price</p>
+        <input type="text" name="new_menuitem_price" value="<%= @menu_item.price %>">
+      </div>
+      Select Menu Type :
+      <select name="new_menuitem_menu_id">
+        <% Menu.all.each do |menu| %>
+          <option value="<%= menu.id %>"><%= menu.menu_name %></option>
+        <% end %>
+      </select>
+      <div class="Form-section">
+        <input type="button" Onclick="this.form.submit()" value="Update" >
+      </div>
+   <%end%>
+  </section>
+</div>
